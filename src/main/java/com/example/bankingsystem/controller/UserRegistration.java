@@ -1,6 +1,9 @@
 package com.example.bankingsystem.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,9 +24,13 @@ public class UserRegistration {
 		super();
 		this.userService = userService;
 	}
-	@RequestMapping("/registration")
+	//@RequestMapping("/registration")
 	public ModelAndView getpage() {
 		return new ModelAndView("registration.html");
+	}
+	@RequestMapping("/students")
+	public String registration(HttpServletRequest request,Model model) {
+		return "students";
 	}
 	
 	@ModelAttribute("user")
@@ -36,7 +43,7 @@ public class UserRegistration {
 		return "registration";
 	}
 	
-	@PostMapping
+	@PostMapping()
 	public String registerUserAccount(@ModelAttribute("user") UserRegistrationDto registrationDto) {
 		userService.save(registrationDto);
 		return "redirect:/registration?success";

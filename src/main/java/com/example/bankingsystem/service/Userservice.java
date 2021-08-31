@@ -6,7 +6,9 @@ import java.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.bankingsystem.dto.RequestAcc;
 import com.example.bankingsystem.dto.UserRegistrationDto;
+import com.example.bankingsystem.model.Account;
 import com.example.bankingsystem.model.Role;
 import com.example.bankingsystem.model.User;
 import com.example.bankingsystem.repository.UserRepository;
@@ -50,6 +52,9 @@ public class Userservice {
 			
 			return userrepo.save(user);
 		}
-
+		 public List<Account> getaccbytype(Integer id) {
+			    System.out.println("age"+id);
+				return userrepo.getaccountbytype(id);
+			}
 		
 }

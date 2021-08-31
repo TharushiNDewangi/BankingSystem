@@ -52,6 +52,8 @@ public class UserController {
 	    try {
 	        User existuser = service.getById(userid);
 	        System.out.println( existuser.getAddress());
+	        System.out.println( existuser.getAccounts());
+	        System.out.println( user.getAccounts());
 	        existuser.setName(user.getName());
 	        existuser.setAddress(user.getAddress());
 	        existuser.setAge(user.getAge());
@@ -60,6 +62,7 @@ public class UserController {
 	        existuser.setPhonenumber(user.getPhonenumber());
 	        existuser.setUsername(user.getUsername());
 	        existuser.setPassword(user.getPassword());
+	        existuser.setAccounts(user.getAccounts());
 	        service.save(existuser);
 	        return new ResponseEntity<User>(HttpStatus.OK);
 	    } catch (NoSuchElementException e) {

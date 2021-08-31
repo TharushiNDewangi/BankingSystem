@@ -5,12 +5,14 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.bankingsystem.dto.CreateAccount;
 import com.example.bankingsystem.dto.RequestAcc;
+import com.example.bankingsystem.model.Account;
 import com.example.bankingsystem.model.User;
 import com.example.bankingsystem.repository.AccountRepository;
 import com.example.bankingsystem.repository.UserRepository;
@@ -40,6 +42,11 @@ public class CreateAccController {
 	public Float getAccAmount() {
 	    return userrepository.getAccAmount();
 	}
+	@GetMapping("/getaccbytype/{type}")
+    public List<Account> getAccinformation(@PathVariable Integer id){
+        return userrepository.getaccountbytype(id);
+    }
+	
 	
 
     
