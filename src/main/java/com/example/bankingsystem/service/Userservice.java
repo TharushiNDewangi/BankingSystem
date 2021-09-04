@@ -52,9 +52,15 @@ public class Userservice {
 			
 			return userrepo.save(user);
 		}
-		 public List<Account> getaccbytype(Integer id) {
-			    System.out.println("age"+id);
-				return userrepo.getaccountbytype(id);
-			}
+//		 public List<Account> getaccbytype(String type) {
+//			    System.out.println("age"+type);
+//				return userrepo.getaccountbytype(type);
+//			}
+
+		public String getByNic(String nic) {
+			// TODO Auto-generated method stub
+			 System.out.println("nic"+nic);
+			return userrepo.getByNic(nic);
+		}
 		
 }

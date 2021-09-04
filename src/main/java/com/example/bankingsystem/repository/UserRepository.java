@@ -26,11 +26,13 @@ public interface UserRepository extends JpaRepository<User, Integer>{
 	@Query(value="select * from user u where u.age=?1",nativeQuery = true) 
 	public List<User> getuserbyage(Integer age);
 	
-	@Query(value="select * from user u ,where u.id=?1") 
+	@Query(value="select u.id from user u where u.nic=?1",nativeQuery = true)
+	public String getByNic(String nic);
+	@Query(value="select * from user u where u.id=?1",nativeQuery = true) 
 	public List<User> getuseracc(Integer id);
 	
-	@Query(value="select * from account a ,where a.id=?1") 
-	public List<Account> getaccountbytype(Integer id);
+	@Query(value="select * from account a where a.type=?1",nativeQuery = true) 
+	public List<Account> getaccountbytype(String type);
 	
 	//@Query(value="select * from account a ,where a.type=?1") 
 	//public List<Account> getaccountbytype(String type);

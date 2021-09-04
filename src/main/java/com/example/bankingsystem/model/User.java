@@ -33,7 +33,7 @@ public class User {
 	@Column(name="id")
 	private Integer id;
 	
-	@Column(name="nic" ,nullable=false)
+	@Column(name="nic" ,nullable=false,unique=true)
 	private String nic;
 	
 	@Column(name="name")

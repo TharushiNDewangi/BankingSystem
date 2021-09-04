@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.bankingsystem.model.Account;
 import com.example.bankingsystem.model.User;
 import com.example.bankingsystem.service.Userservice;
 
@@ -73,4 +74,34 @@ public class UserController {
 	public void delete(@PathVariable Integer userid) {
 	    service.delete(userid);
 	}
+	//ADD acc to user
+	@PostMapping("/accadd/{userid}")
+	public void add(@RequestBody User acc, @PathVariable Integer userid) {
+		try {
+			User u =service.getById(userid);
+			System.out.println( userid);
+			u.setId(userid);
+		    u.setAccounts(acc.getAccounts());
+			service.save(u);
+		}  catch (NoSuchElementException e) {
+			 System.out.println( "error ####");
+	        
+	    } 
+		 
+	}
+	//ADD acc to user
+		@PostMapping("/accnicadd/{nic}")
+		public void add(@RequestBody User acc, @PathVariable String nic) {
+			try {
+				int id=Integer.parseInt(service.getByNic(nic));
+				User u =service.getById(id);
+				System.out.println( nic);
+			    u.setAccounts(acc.getAccounts());
+				service.save(u);
+			}  catch (NoSuchElementException e) {
+				 System.out.println( "error ####");
+		        
+		    } 
+			 
+		}
 }

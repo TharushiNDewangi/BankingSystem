@@ -43,8 +43,8 @@ public class CreateAccController {
 	    return userrepository.getAccAmount();
 	}
 	@GetMapping("/getaccbytype/{type}")
-    public List<Account> getAccinformation(@PathVariable Integer id){
-        return userrepository.getaccountbytype(id);
+    public List<Account> getAccinformation(@PathVariable String type){
+        return userrepository.getaccountbytype(type);
     }
 	
 	
