@@ -3,45 +3,39 @@ package com.example.bankingsystem.model;
 import java.util.Collection;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
+import javax.validation.constraints.*;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
-//not write getters and setters
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-@ToString
 @Entity
-@Table(name="user")
+@Table(name="user", uniqueConstraints = @UniqueConstraint(columnNames = "nic"))
 public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
 	private Integer id;
-	
+
+	@NotBlank(message = "NIC is mandatory")
 	@Column(name="nic" ,nullable=false,unique=true)
 	private String nic;
-	
-	@Column(name="name")
+
+
+
+	// user name should not be null and empty
+	// user name should have at least 2 characters
+
+	@NotEmpty
+	@Size(min = 2, message = "user name should have at least 2 characters")
+	@Column(name="name",nullable = false)
 	private String name;
-	
+
+	@NotNull
 	@Column(name="username")
 	private String username;
-	
+
+	// password should not be null or empty
+	// password should have at least 8 characters
+	@NotEmpty
+	@Size(min = 8, message = "password should have at least 8 characters")
 	@Column(name="password")
 	private String password;
 	
@@ -50,7 +44,9 @@ public class User {
 	
 	@Column(name="address")
 	private String address;
-	
+
+	@NotNull
+	@Email
 	@Column(name="email")
 	private String email;
 	

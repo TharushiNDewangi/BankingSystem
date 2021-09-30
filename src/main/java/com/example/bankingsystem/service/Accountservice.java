@@ -34,7 +34,7 @@ public class Accountservice {
 		 accountrepo.deleteById(id);
 	    }
 	 public User Updateuser(User user,Integer id) {
-		 //check user
+		    //check user
 	        return null;
 	    }
 //	 public List< Account> getuserbyage(Integer age) {

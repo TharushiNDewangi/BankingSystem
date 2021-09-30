@@ -5,9 +5,8 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.stereotype.Repository;
 
-import com.example.bankingsystem.dto.RequestAcc;
+import com.example.bankingsystem.dto.RequestAccDto;
 import com.example.bankingsystem.model.Account;
 import com.example.bankingsystem.model.User;
 
@@ -16,10 +15,10 @@ import com.example.bankingsystem.model.User;
 public interface UserRepository extends JpaRepository<User, Integer>{
 
 	@Query("SELECT new com.example.bankingsystem.dto.RequestAcc(u.name,a.accnumber) FROM User u Join u.accounts a")
-	public List<RequestAcc> getJoinInformation();
+	public List<RequestAccDto> getJoinInformation();
 	//@Query("SELECT new com.example.usermanagement.dto.RequestAcc(u.name,a.accnumber,SUM(a.amount)) FROM User u Join u.accounts a",)
-//	@Query(value = "SELECT SUM(a.amount),u.name FROM Account a,User u where u.id=a.up_fk group by u.name ", nativeQuery = true)
-//	public Float getAccAmount();
+	//@Query(value = "SELECT SUM(a.amount),u.name FROM Account a,User u where u.id=a.up_fk group by u.name ", nativeQuery = true)
+    //	public Float getAccAmount();
 	//, nativeQuery = true
 	@Query(value = "SELECT SUM(a.amount),u.name FROM Account a,User u where u.id=a.up_fk ", nativeQuery = true)
 	public Float getAccAmount();

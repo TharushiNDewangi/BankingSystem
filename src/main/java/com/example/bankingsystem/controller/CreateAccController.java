@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.bankingsystem.dto.CreateAccount;
-import com.example.bankingsystem.dto.RequestAcc;
+import com.example.bankingsystem.dto.CreateAccountDto;
+import com.example.bankingsystem.dto.RequestAccDto;
 import com.example.bankingsystem.model.Account;
 import com.example.bankingsystem.model.User;
 import com.example.bankingsystem.repository.AccountRepository;
@@ -23,10 +23,8 @@ public class CreateAccController {
 	@Autowired
 	private AccountRepository accountrepository;
 	@PostMapping("/createaccounts")
-	public User createAccount(@RequestBody CreateAccount createaccount)
+	public User createAccount(@RequestBody CreateAccountDto createaccount)
 	{
-		System.out.println("gg");
-		System.out.println(createaccount.getUser());
 		return userrepository.save(createaccount.getUser());
 	}
 	@GetMapping("/findAllaccounts")
@@ -34,7 +32,7 @@ public class CreateAccController {
         return userrepository.findAll();
     }
 	@GetMapping("/getaccinfor")
-    public List<RequestAcc> getJoinInformation(){
+    public List<RequestAccDto> getJoinInformation(){
         return userrepository.getJoinInformation();
     }
 	

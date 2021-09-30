@@ -58,9 +58,6 @@ public class AccountControlller {
 	public ResponseEntity<Account> update(@RequestBody Account acc, @PathVariable Integer accid) {
 	    try {
 	        Account existacc = accservice.getById(accid);
-	        System.out.println( existacc.getType());
-	        System.out.println( existacc.getAmount());
-	        System.out.println( existacc.getAccnumber());
 	        float accbalance =acc.getAmount();
 	        float updateamount = acc.getAmount() + existacc.getAmount();
 	        existacc.setAmount(updateamount);

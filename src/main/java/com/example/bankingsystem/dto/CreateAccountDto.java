@@ -1,16 +1,7 @@
 package com.example.bankingsystem.dto;
 
 import com.example.bankingsystem.model.User;
-
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-@ToString
-public class CreateAccount {
+public class CreateAccountDto {
 	
 	private User user;
 

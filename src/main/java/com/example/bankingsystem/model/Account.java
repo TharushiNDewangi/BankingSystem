@@ -10,15 +10,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-@ToString
+
 @Entity
 @Table(name="account")
 public class Account {
@@ -26,14 +21,21 @@ public class Account {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
 	private int id;
+
+	@NotNull
 	@Column(name="accnumber")
 	private int accnumber;
+
+	@NotNull
 	@Column(name="type")
 	private String type;
+
+	@NotNull
+	@Size(min = 4, message = "amount should have at least 4 numbers")
 	@Column(name="amount")
 	private float amount;
 	
-	public int getId() {
+	public int getId(){
 		return id;
 	}
 	public void setId(int id) {

@@ -6,9 +6,7 @@ import java.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.bankingsystem.dto.RequestAcc;
 import com.example.bankingsystem.dto.UserRegistrationDto;
-import com.example.bankingsystem.model.Account;
 import com.example.bankingsystem.model.Role;
 import com.example.bankingsystem.model.User;
 import com.example.bankingsystem.repository.UserRepository;
@@ -36,7 +34,7 @@ public class Userservice {
 	        userrepo.deleteById(id);
 	    }
 	 public User Updateuser(User user,Integer id) {
-		 //check user
+
 	        return null;
 	    }
 	 public List<User> getuserbyage(Integer age) {
@@ -52,10 +50,7 @@ public class Userservice {
 			
 			return userrepo.save(user);
 		}
-//		 public List<Account> getaccbytype(String type) {
-//			    System.out.println("age"+type);
-//				return userrepo.getaccountbytype(type);
-//			}
+
 
 		public String getByNic(String nic) {
 			// TODO Auto-generated method stub

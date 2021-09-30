@@ -18,6 +18,8 @@ import com.example.bankingsystem.model.Account;
 import com.example.bankingsystem.model.User;
 import com.example.bankingsystem.service.Userservice;
 
+import javax.validation.Valid;
+
 
 @RestController
 public class UserController {
@@ -28,6 +30,7 @@ public class UserController {
 	public List<User> list(){
 		return service.getAll();
 	}
+
 	@GetMapping("/users/{userid}")
 	public ResponseEntity<User> get(@PathVariable Integer userid){
 		try {
@@ -39,22 +42,19 @@ public class UserController {
 	}
 	@GetMapping("/users/getbyage/{age}")
 	public ResponseEntity<List<User>> getuserbyage(@PathVariable Integer age){
-		 System.out.println("age"+age);
 		    return new ResponseEntity<>(service.getuserbyage(age),HttpStatus.OK);
 		
 	}
 	
 	@PostMapping("/useradd")
-	public void add(@RequestBody User user) {
+	public void add(@Valid @RequestBody User user) {
 		service.save(user);
 	}
+
 	@PutMapping("/edituser/{userid}")
 	public ResponseEntity<User> update(@RequestBody User user, @PathVariable Integer userid) {
 	    try {
 	        User existuser = service.getById(userid);
-	        System.out.println( existuser.getAddress());
-	        System.out.println( existuser.getAccounts());
-	        System.out.println( user.getAccounts());
 	        existuser.setName(user.getName());
 	        existuser.setAddress(user.getAddress());
 	        existuser.setAge(user.getAge());
@@ -79,7 +79,6 @@ public class UserController {
 	public void add(@RequestBody User acc, @PathVariable Integer userid) {
 		try {
 			User u =service.getById(userid);
-			System.out.println( userid);
 			u.setId(userid);
 		    u.setAccounts(acc.getAccounts());
 			service.save(u);
@@ -95,7 +94,6 @@ public class UserController {
 			try {
 				int id=Integer.parseInt(service.getByNic(nic));
 				User u =service.getById(id);
-				System.out.println( nic);
 			    u.setAccounts(acc.getAccounts());
 				service.save(u);
 			}  catch (NoSuchElementException e) {
